@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Overload — Fast Multiplayer VR</title>
+  <meta name="description" content="Overload — a fast-paced multiplayer VR shooter. Play free on Meta Quest." />
+  <!-- Tailwind via CDN (good for prototypes; for production consider building CSS) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-900 text-neutral-100 antialiased">
+  <!-- Container -->
+  <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <img src="https://via.placeholder.com/64x64.png?text=Logo" alt="Logo" class="h-12 w-12 rounded-md object-cover" />
+      <nav class="hidden md:flex gap-6 text-sm uppercase tracking-wider">
+        <a href="#about" class="opacity-80 hover:opacity-100">Home</a>
+        <a href="#about" class="opacity-80 hover:opacity-100">About</a>
+        <a href="#privacy" class="opacity-80 hover:opacity-100">Privacy</a>
+      </nav>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="https://www.meta.com" target="_blank" rel="noopener" class="bg-sky-600 hover:bg-sky-500 px-4 py-2 rounded-md text-sm font-semibold shadow">
+        PLAY FREE
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row items-center gap-10">
+    <div class="w-full md:w-6/12">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">ON METAQUEST VR</h1>
+      <p class="mt-6 text-neutral-300 max-w-xl">
+        In Overload — a fast-paced multiplayer shooter where you can battle solo or team up with friends.
+        Choose from 10+ powerful weapons, customize your look with tons of cosmetics, and build your squad.
+      </p>
+
+      <div class="mt-8 flex gap-3">
+        <a href="https://www.meta.com" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-white text-neutral-900 px-5 py-3 rounded-lg shadow font-semibold">
+          ▶ Play Free on Meta
+        </a>
+        <a href="#modes" class="inline-flex items-center gap-2 px-5 py-3 border border-neutral-700 rounded-lg text-sm">
+          Learn more
+        </a>
+      </div>
+
+      <ul class="mt-8 space-y-3 text-neutral-400">
+        <li>• Duels — Prove your skills in 1v1 showdowns</li>
+        <li>• Team Deathmatch — Work together and dominate</li>
+        <li>• Deathmatch — Every player for themselves</li>
+      </ul>
+    </div>
+
+    <div class="w-full md:w-6/12 flex justify-center">
+      <!-- Replace with hero image or animated gif -->
+      <img src="https://via.placeholder.com/720x420.png?text=Hero+Art" alt="Overload hero" class="rounded-xl shadow-lg object-cover w-full max-w-2xl" />
+    </div>
+  </section>
+
+  <!-- Modes/Feature strip -->
+  <section id="modes" class="bg-neutral-850 py-12">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
+        <h3 class="font-bold text-lg">Duels</h3>
+        <p class="mt-2 text-sm text-neutral-300">1v1 showdowns for skill-based fights.</p>
+      </div>
+      <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
+        <h3 class="font-bold text-lg">Team Deathmatch</h3>
+        <p class="mt-2 text-sm text-neutral-300">Teamplay and tactics to control the map.</p>
+      </div>
+      <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
+        <h3 class="font-bold text-lg">Deathmatch</h3>
+        <p class="mt-2 text-sm text-neutral-300">Free-for-all mayhem — last player standing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect -->
+  <section class="max-w-4xl mx-auto px-6 py-12 text-center">
+    <h2 class="text-2xl font-bold">What to Expect</h2>
+    <p class="mt-4 text-neutral-300">Constant updates: new maps, new guns, cosmetics, plus quests to keep the action rewarding.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer id="privacy" class="border-t border-neutral-800 mt-10">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-neutral-400">&copy; <span id="year"></span> Company name</div>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-sm text-neutral-400 hover:underline">Privacy policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // small JS: update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
