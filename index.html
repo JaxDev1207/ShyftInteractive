@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shyft Interactive</title>
   <meta name="description" content="Shyft Interactive" />
-  <!-- Tailwind via CDN (good for prototypes; for production consider building CSS) -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-neutral-900 text-neutral-100 antialiased">
-  <!-- Container -->
   <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
     <div class="flex items-center gap-4">
       <img src="https://cdn.discordapp.com/attachments/1235718167452712960/1428823713159057429/a5ec1a84-4b65-400e-b743-898b424ffb27.png?ex=68f3e747&is=68f295c7&hm=882b05ed4bb68a7836fc400616acf24bea39f18d4d1c324ba6b3bd99c42b523b&" alt="Logo" class="h-12 w-12 rounded-md object-cover" />
@@ -20,22 +18,18 @@
         <a href="#privacy" class="opacity-80 hover:opacity-100">Privacy</a>
       </nav>
     </div>
-
     <div class="flex items-center gap-3">
       <a href="https://www.meta.com/en-gb/experiences/monkle/23978046211869850/" target="_blank" rel="noopener" class="bg-sky-600 hover:bg-sky-500 px-4 py-2 rounded-md text-sm font-semibold shadow">
         PLAY FREE
       </a>
     </div>
   </header>
-
-  <!-- Hero -->
   <section class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row items-center gap-10">
     <div class="w-full md:w-6/12">
       <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">ON METAQUEST VR</h1>
       <p class="mt-6 text-neutral-300 max-w-xl">
        Monkle is a VR game inspired by Gorilla Tag. Monkle really is a general fan game about anything fun related. Join the Monkle Discord: https://discord.gg/DwfcvnNkJC
       </p>
-
       <div class="mt-8 flex gap-3">
         <a href="https://www.meta.com/en-gb/experiences/monkle/23978046211869850/" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-white text-neutral-900 px-5 py-3 rounded-lg shadow font-semibold">
           ▶ Play Free on Meta
@@ -47,21 +41,16 @@
           Monkle Privacy Policy
         </a>
       </div>
-
       <ul class="mt-8 space-y-3 text-neutral-400">
         <li>• Tag — Prove your the greatest by dominating lobbies in tag! Earn tag tokens for every tag you get to obtain purchasables</li>
         <li>• Casual — Have fun and hangout with others or go on a little shopping spree in casual</li>
         <li>• Laser Tag — Every player for themselves in the LASER TAG ARENA!</li>
       </ul>
     </div>
-
     <div class="w-full md:w-6/12 flex justify-center">
-      <!-- Replace with hero image or animated gif -->
       <img src="https://scontent-atl3-1.oculuscdn.com/v/t64.5771-25/491820619_4515595062029015_7173071083792239524_n.jpg?stp=dst-jpg_q92_s2048x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=GIFCzQNEmscQ7kNvwGon7ga&_nc_oc=AdmwIMk52WAIEsrDcfLkEWxkjGsfrCs9oWyi0aWGoJKJjUG4G3zKhpGGPOnbBLn98ePwFL-4XHeviLrfCEvtHXwi&_nc_zt=3&_nc_ht=scontent-atl3-1.oculuscdn.com&oh=00_Afcq24VzRJ9RTlCEt6r_iDU4nk-BYiZfoWko4pgdUiNcTQ&oe=68F73E3F" alt="Overload hero" class="rounded-xl shadow-lg object-cover w-full max-w-2xl" />
     </div>
   </section>
-
-  <!-- Modes/Feature strip -->
   <section id="modes" class="bg-neutral-850 py-12">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
       <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
@@ -78,14 +67,10 @@
       </div>
     </div>
   </section>
-
-  <!-- What to Expect -->
   <section class="max-w-4xl mx-auto px-6 py-12 text-center">
     <h2 class="text-2xl font-bold">What to Expect</h2>
     <p class="mt-4 text-neutral-300">Constant updates: new maps, gamemodes, friends, and FUN!</p>
   </section>
-
-  <!-- Footer -->
   <footer id="privacy" class="border-t border-neutral-800 mt-10">
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="text-sm text-neutral-400">&copy; <span id="year"></span> Shift Interactive</div>
@@ -94,9 +79,7 @@
       </div>
     </div>
   </footer>
-
   <script>
-    // small JS: update year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
