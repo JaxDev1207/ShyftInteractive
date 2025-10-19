@@ -1,87 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="fb165eb1-e19d-4ebc-85e2-12ca6af1493a (1).png" href="/fb165eb1-e19d-4ebc-85e2-12ca6af1493a (1).png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shyft Interactive</title>
-  <meta name="description" content="Shyft Interactive" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="assets/fb165eb1-e19d-4ebc-85e2-12ca6af1493a(1).png" type="image/png"> <!-- ✅ Your site logo -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-neutral-900 text-neutral-100 antialiased">
-  <header class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <img src="https://cdn.discordapp.com/attachments/1161094542569771158/1428943642059345970/fb165eb1-e19d-4ebc-85e2-12ca6af1493a_1.png?ex=68f456f8&is=68f30578&hm=cbaa8c4222d5ba7aa06746f7fda085ba81085b0dbd4aff343cbaa51903992bd8&" alt="Logo" class="h-12 w-12 rounded-md object-cover" />
-      <nav class="hidden md:flex gap-6 text-sm uppercase tracking-wider">
-        <a href="#home" class="opacity-80 hover:opacity-100">Home</a>
-        <a href="#about" class="opacity-80 hover:opacity-100">About</a>
-        <a href="#browse-games" class="opacity-80 hover:opacity-100">Browse Games</a>
-        <a href="#privacy" class="opacity-80 hover:opacity-100">Privacy</a>
-      </nav>
-    </div>
-    <div class="flex items-center gap-3">
-      <a href="https://www.meta.com/en-gb/experiences/monkle/23978046211869850/" target="_blank" rel="noopener" class="bg-sky-600 hover:bg-sky-500 px-4 py-2 rounded-md text-sm font-semibold shadow">
-        PLAY FREE
-      </a>
-    </div>
+<body>
+  <header>
+    <img src="images/logo.png" alt="Shyft Interactive Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="games.html">Games</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
-  <section class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row items-center gap-10">
-    <div class="w-full md:w-6/12">
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">ON METAQUEST VR</h1>
-      <p class="mt-6 text-neutral-300 max-w-xl">
-       Monkle is a VR game inspired by Gorilla Tag. Monkle really is a general fan game about anything fun related. Join the Monkle Discord: https://discord.gg/DwfcvnNkJC
-      </p>
-      <div class="mt-8 flex gap-3">
-        <a href="https://www.meta.com/en-gb/experiences/monkle/23978046211869850/" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-white text-neutral-900 px-5 py-3 rounded-lg shadow font-semibold">
-          ▶ Play Free on Meta
-        </a>
-        <a href="#modes" class="inline-flex items-center gap-2 px-5 py-3 border border-neutral-700 rounded-lg text-sm">
-          Learn more
-        </a>
-         <a href="https://www.meta.com/en-gb/experiences/monkle/23978046211869850/" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-white text-neutral-900 px-5 py-3 rounded-lg shadow font-semibold">
-          Monkle Privacy Policy
-        </a>
-      </div>
-      <ul class="mt-8 space-y-3 text-neutral-400">
-        <li>• Tag—Prove your the greatest by dominating lobbies in tag! Earn tag tokens for every tag you get to obtain purchasables</li>
-        <li>• Casual—Have fun and hangout with others or go on a little shopping spree in casual</li>
-        <li>• Laser Tag—Every player for themselves in the LASER TAG ARENA!</li>
-      </ul>
-    </div>
-    <div class="w-full md:w-6/12 flex justify-center">
-      <img src="https://scontent-atl3-1.oculuscdn.com/v/t64.5771-25/491820619_4515595062029015_7173071083792239524_n.jpg?stp=dst-jpg_q92_s2048x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=6e7a0a&_nc_ohc=GIFCzQNEmscQ7kNvwGon7ga&_nc_oc=AdmwIMk52WAIEsrDcfLkEWxkjGsfrCs9oWyi0aWGoJKJjUG4G3zKhpGGPOnbBLn98ePwFL-4XHeviLrfCEvtHXwi&_nc_zt=3&_nc_ht=scontent-atl3-1.oculuscdn.com&oh=00_Afcq24VzRJ9RTlCEt6r_iDU4nk-BYiZfoWko4pgdUiNcTQ&oe=68F73E3F" alt="Overload hero" class="rounded-xl shadow-lg object-cover w-full max-w-2xl" />
-    </div>
-  </section>
-  <section id="modes" class="bg-neutral-850 py-12">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-      <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
-        <h3 class="font-bold text-lg">Tag</h3>
-        <p class="mt-2 text-sm text-neutral-300">Tag or "infect" as many people as you can to earn bragging rights and tag tokens!</p>
-      </div>
-      <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
-        <h3 class="font-bold text-lg">Casual</h3>
-        <p class="mt-2 text-sm text-neutral-300">Hangout with friends or make new ones.</p>
-      </div>
-      <div class="p-6 rounded-xl bg-gradient-to-b from-neutral-800 to-neutral-900 shadow">
-        <h3 class="font-bold text-lg">Laser Tag</h3>
-        <p class="mt-2 text-sm text-neutral-300">Free-for-all mayhem — last player standing.</p>
-      </div>
-    </div>
-  </section>
-  <section class="max-w-4xl mx-auto px-6 py-12 text-center">
-    <h2 class="text-2xl font-bold">What to Expect</h2>
-    <p class="mt-4 text-neutral-300">Constant updates: new maps, gamemodes, friends, and FUN!</p>
-  </section>
-  <footer id="privacy" class="border-t border-neutral-800 mt-10">
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="text-sm text-neutral-400">&copy; <span id="year"></span> Shift Interactive</div>
-      <div class="flex items-center gap-4">
-        <a href="#" class="text-sm text-neutral-400 hover:underline">Privacy policy</a>
-      </div>
-    </div>
+
+  <main>
+    <h1>Welcome to Shyft Interactive</h1>
+    <p>We make cool VR experiences and games.</p>
+  </main>
+
+  <footer>
+    <p>© 2025 Shyft Interactive. All rights reserved.</p>
   </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
