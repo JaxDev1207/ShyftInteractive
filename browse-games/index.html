@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="icon" type="fb165eb1-e19d-4ebc-85e2-12ca6af1493a (1).png" href="/fb165eb1-e19d-4ebc-85e2-12ca6af1493a (1).png">
+  <link rel="icon" type="image/png" href="/fb165eb1-e19d-4ebc-85e2-12ca6af1493a (1).png" />
   <title>Browse Games | Shyft Interactive</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -26,7 +26,7 @@
       </nav>
     </div>
   </header>
-<!--Remember Jax, keep the green notes. If you are reading this in inspect element join the discord also if your TeamCHDEV you smell like a fish filet-->
+<!--God damn this code is hard to do i keep forgetting where the different parts are lol (btw TeamCHDEV smells like fish filet lol)-->
   <!-- MAIN CONTENT -->
   <main class="flex flex-col items-center text-center mt-20 px-6">
 
@@ -35,6 +35,7 @@
       Discover our catalog of experiences — from experimental concepts to fully released titles.
     </p>
 
+    <!-- Search Bar -->
     <div class="w-full max-w-xl mb-10">
       <input 
         type="text" 
@@ -47,25 +48,26 @@
     <!-- Games Grid -->
     <section id="gamesList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
 
+      <!-- Example Game Card -->
       <div class="bg-[#202020] border border-gray-700 rounded-2xl overflow-hidden shadow hover:shadow-sky-400/20 transition hover:-translate-y-1">
-        <img src="https://placehold.co/600x300/1f1f1f/aaa?text=Example+Game" alt="Example Game" class="w-full h-48 object-cover">
+        <img src="https://www.meta.com/en-gb/experiences/monkle/23978046211869850/" alt="monkle" class="w-full h-48 object-cover">
         <div class="p-6 text-left">
-          <h3 class="text-2xl font-semibold mb-2">Example Game Title</h3>
-          <p class="text-gray-400 mb-4">An immersive VR experience where creativity and community come together.</p>
-          <a href="#" class="inline-block bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-lg font-medium transition">Learn More</a>
+          <h3 class="text-2xl font-semibold mb-2">Monkle</h3>
+          <p class="text-gray-400 mb-4">Monkle is a Gorilla Tag fan game like Munkz VR and MonkGame.</p>
+          <a href="./monkle/" class="inline-block bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-lg font-medium transition">View Game</a>
         </div>
       </div>
-
-      <!-- NOTE TO SELF: You can copy this block and paste below to add more games -->
 
     </section>
 
   </main>
 
+  <!-- FOOTER -->
   <footer class="text-center text-gray-500 mt-16 pb-8">
     <p>© 2025 Shyft Interactive. All rights reserved.</p>
   </footer>
 
+  <!-- Search Script -->
   <script>
     const searchBar = document.getElementById('searchBar');
     const gamesList = document.getElementById('gamesList');
