@@ -1,0 +1,10 @@
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+  const supabase = createClient("https://lygupyafoyxbcwtflwji.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5Z3VweWFmb3l4YmN3dGZsd2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyNTk5MjgsImV4cCI6MjA3ODgzNTkyOH0.NF0Qt9iWkd4YB_hShe4bQ2JpPUyi4V9ibbvs6z9Ze5g");
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) {
+    window.location.href = "/login.html";
+  } else {
+    document.body.innerHTML = `<h1>Welcome, ${data.user.email}</h1>`;
+  }
+</script>
