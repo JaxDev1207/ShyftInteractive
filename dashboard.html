@@ -3,7 +3,8 @@
 <head>
   <title>Dashboard | Shyft Interactive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
- <link rel="icon" type="ShyftInteractiveLogoV2.png" href="/ShyftInteractiveLogoV2.png">
+  <link rel="icon" type="image/png" href="/ShyftInteractiveLogoV2.png">
+
   <style>
     body {
       background: #0d0f12;
@@ -52,6 +53,7 @@
       cursor: pointer;
       font-weight: 600;
       margin-top: 10px;
+      color: white;
     }
     #avatarPreview {
       width: 95px;
@@ -92,47 +94,70 @@
   <script type="module">
     import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+    // Supabase client
     const supabase = createClient(
       "https://lygupyafoyxbcwtflwji.supabase.co",
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5Z3VweWFmb3l4YmN3dGZsd2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyNTk5MjgsImV4cCI6MjA3ODgzNTkyOH0.NF0Qt9iWkd4YB_hShe4bQ2JpPUyi4V9ibbvs6z9Ze5g"
     );
 
+    // DOM Elements
     const avatarPreview = document.getElementById("avatarPreview");
     const avatarInput = document.getElementById("avatarInput");
-
     const usernameInput = document.getElementById("usernameInput");
     const emailDisplay = document.getElementById("emailDisplay");
-
     const uploadAvatarBtn = document.getElementById("uploadAvatarBtn");
     const updateUsernameBtn = document.getElementById("updateUsernameBtn");
 
-    const { data: session } = await supabase.auth.getSession();
-    if (!session.session) window.location.href = "/login.html";
+    // Ensure authentication exists
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (!sessionData.session) {
+      window.location.href = "/login.html";
+    }
 
-    const user = session.session.user;
-
+    const user = sessionData.session.user;
     emailDisplay.textContent = user.email;
 
+    // Load profile
     async function loadProfile() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", user.id)
         .single();
 
-      if (data.username) usernameInput.value = data.username;
-      if (data.avatar_url) avatarPreview.src = data.avatar_url;
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      usernameInput.value = data.username || "";
+
+      if (data.avatar_url) {
+        avatarPreview.src = data.avatar_url;
+      }
     }
 
     loadProfile();
 
+    // Update Username
     updateUsernameBtn.onclick = async () => {
-      await supabase.from("profiles")
-        .update({ username: usernameInput.value })
+      const newUsername = usernameInput.value.trim();
+      if (!newUsername) return alert("Username cannot be empty.");
+
+      const { error } = await supabase
+        .from("profiles")
+        .update({ username: newUsername })
         .eq("id", user.id);
-      alert("Username updated!");
+
+      if (error) {
+        console.error(error);
+        alert("Could not update username.");
+      } else {
+        alert("Username updated!");
+      }
     };
 
+    // Upload Avatar
     uploadAvatarBtn.onclick = async () => {
       const file = avatarInput.files[0];
       if (!file) return alert("Choose a file first!");
@@ -140,15 +165,37 @@
       const ext = file.name.split(".").pop();
       const fileName = `${user.id}.${ext}`;
 
-      await supabase.storage.from("avatars").upload(fileName, file, { upsert: true });
+      // Upload to storage
+      const { error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(fileName, file, { upsert: true });
 
-      const { data } = supabase.storage.from("avatars").getPublicUrl(fileName);
+      if (uploadError) {
+        console.error(uploadError);
+        alert("Failed to upload avatar.");
+        return;
+      }
 
-      await supabase.from("profiles").update({
-        avatar_url: data.publicUrl
-      }).eq("id", user.id);
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from("avatars")
+        .getPublicUrl(fileName);
 
-      avatarPreview.src = data.publicUrl;
+      const publicUrl = urlData.publicUrl;
+
+      // Update profile row
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ avatar_url: publicUrl })
+        .eq("id", user.id);
+
+      if (updateError) {
+        console.error(updateError);
+        alert("Failed to update profile.");
+        return;
+      }
+
+      avatarPreview.src = publicUrl;
       alert("Avatar updated!");
     };
   </script>
