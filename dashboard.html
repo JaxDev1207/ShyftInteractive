@@ -1,10 +1,156 @@
-<script type="module">
-  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-  const supabase = createClient("https://lygupyafoyxbcwtflwji.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5Z3VweWFmb3l4YmN3dGZsd2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyNTk5MjgsImV4cCI6MjA3ODgzNTkyOH0.NF0Qt9iWkd4YB_hShe4bQ2JpPUyi4V9ibbvs6z9Ze5g");
-  const { data } = await supabase.auth.getUser();
-  if (!data.user) {
-    window.location.href = "/login.html";
-  } else {
-    document.body.innerHTML = `<h1>Welcome, ${data.user.email}</h1>`;
-  }
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard | Shyft Interactive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="icon" type="ShyftInteractiveLogoV2.png" href="/ShyftInteractiveLogoV2.png">
+  <style>
+    body {
+      background: #0d0f12;
+      color: #d7e2f0;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #58a6ff;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .card {
+      background: #111418;
+      border: 1px solid #1f242b;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #2b3138;
+      border-radius: 8px;
+      background: #0c0f13;
+      color: #d7e2f0;
+      margin-bottom: 12px;
+    }
+    button {
+      background: #2563eb;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    #avatarPreview {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #1f242b;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Your Account</div>
+
+    <div class="card">
+      <h3>Profile Picture</h3>
+      <img id="avatarPreview" src="/default-avatar.png" alt="Avatar">
+      <label for="avatarInput">Upload New Avatar</label>
+      <input id="avatarInput" type="file" accept="image/*">
+      <button id="uploadAvatarBtn">Update Avatar</button>
+    </div>
+
+    <div class="card">
+      <h3>Username</h3>
+      <label for="usernameInput">New Username</label>
+      <input id="usernameInput" type="text">
+      <button id="updateUsernameBtn">Save Username</button>
+    </div>
+
+    <div class="card">
+      <h3>Your Email</h3>
+      <p id="emailDisplay">Loading...</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    const supabase = createClient(
+      "YOUR_SUPABASE_URL",
+      "YOUR_SUPABASE_ANON_KEY"
+    );
+
+    const avatarPreview = document.getElementById("avatarPreview");
+    const avatarInput = document.getElementById("avatarInput");
+
+    const usernameInput = document.getElementById("usernameInput");
+    const emailDisplay = document.getElementById("emailDisplay");
+
+    const uploadAvatarBtn = document.getElementById("uploadAvatarBtn");
+    const updateUsernameBtn = document.getElementById("updateUsernameBtn");
+
+    const { data: session } = await supabase.auth.getSession();
+    if (!session.session) window.location.href = "/login.html";
+
+    const user = session.session.user;
+
+    emailDisplay.textContent = user.email;
+
+    async function loadProfile() {
+      const { data } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+
+      if (data.username) usernameInput.value = data.username;
+      if (data.avatar_url) avatarPreview.src = data.avatar_url;
+    }
+
+    loadProfile();
+
+    updateUsernameBtn.onclick = async () => {
+      await supabase.from("profiles")
+        .update({ username: usernameInput.value })
+        .eq("id", user.id);
+      alert("Username updated!");
+    };
+
+    uploadAvatarBtn.onclick = async () => {
+      const file = avatarInput.files[0];
+      if (!file) return alert("Choose a file first!");
+
+      const ext = file.name.split(".").pop();
+      const fileName = `${user.id}.${ext}`;
+
+      await supabase.storage.from("avatars").upload(fileName, file, { upsert: true });
+
+      const { data } = supabase.storage.from("avatars").getPublicUrl(fileName);
+
+      await supabase.from("profiles").update({
+        avatar_url: data.publicUrl
+      }).eq("id", user.id);
+
+      avatarPreview.src = data.publicUrl;
+      alert("Avatar updated!");
+    };
+  </script>
+</body>
+</html>
