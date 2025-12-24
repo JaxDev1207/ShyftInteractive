@@ -8,13 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#181818] text-white font-sans">
-  <!-- NAVBAR -->
-<div id="navbar" class="w-full flex items-center justify-between px-5 py-3"
-     style="background:#0d0f12; border-bottom:1px solid #1f242b;">
-
-  <div class="text-xl font-bold" style="color:#58a6ff;">
-    Shyft Interactive
-  </div>
 
 </div>
 
@@ -160,62 +153,5 @@
     </footer>
   </div>
 </main>
-<script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
-const supabase = createClient(
-  "https://lygupyafoyxbcwtflwji.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5Z3VweWFmb3l4YmN3dGZsd2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyNTk5MjgsImV4cCI6MjA3ODgzNTkyOH0.NF0Qt9iWkd4YB_hShe4bQ2JpPUyi4V9ibbvs6z9Ze5g"
-);
-
-// DOM
-const userMenu = document.getElementById("userMenu");
-const loginLink = document.getElementById("loginLink");
-const navAvatar = document.getElementById("navAvatar");
-const navUsername = document.getElementById("navUsername");
-const dropdownMenu = document.getElementById("dropdownMenu");
-const userBtn = document.getElementById("userBtn");
-
-// Dropdown toggle
-userBtn?.addEventListener("click", () => {
-  dropdownMenu.classList.toggle("hidden");
-});
-
-// Load session
-const { data } = await supabase.auth.getSession();
-const user = data?.session?.user;
-
-if (user) {
-  // Logged in → show menu, hide login button
-  userMenu.classList.remove("hidden");
-  loginLink.classList.add("hidden");
-
-  // Load profile row
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .single();
-
-  // Set username
-  navUsername.textContent = profile?.username || "User";
-
-  // Set avatar
-  navAvatar.src = profile?.avatar_url || "/default-avatar.png";
-
-} else {
-  // Not logged in → hide user menu
-  userMenu.classList.add("hidden");
-  loginLink.classList.remove("hidden");
-}
-
-// Logout
-document.getElementById("logoutBtn")?.addEventListener("click", async () => {
-  await supabase.auth.signOut();
-  window.location.href = "/login.html";
-});
-
-</script>
-
 </body>
 </html>
